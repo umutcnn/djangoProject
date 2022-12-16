@@ -47,17 +47,6 @@ class work(models.Model):
 
     def __str__(self):
         return self.title
-
-    '''def get_absolute_url(self):
-        return reverse('work_detail', kwargs={'slug': self.slug})
-
-    
-
-    def image_tag(self):
-        return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
-
-    image_tag.short_description = 'Image'
-
 class Images(models.Model):
     title = models.CharField(max_length=50)
     work = models.ForeignKey(work,on_delete=models.CASCADE)
@@ -65,26 +54,3 @@ class Images(models.Model):
 
     def __str__(self):
         return self.title
-
-class Comment(models.Model):
-    STATUS = (
-        ('New', 'Yeni'),
-        ('True', 'Evet'),
-        ('False', 'Hayır')
-    )
-    work = models.ForeignKey(work, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
-    subject = models.CharField(max_length=50)
-    comment = models.TextField(max_length=200)
-    status = models.CharField(max_length=10, choices=STATUS, blank=True)
-    ip = models.CharField(max_length=20, blank=True)
-    create_at = models.DateTimeField(auto_now_add=True)
-    uptade_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.subject
-
-class CommentForm(ModelForm):
-    class Meta:
-        model = Comment
-        fields = ['subject', 'comment']'''

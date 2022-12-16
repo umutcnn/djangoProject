@@ -1,15 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>ilk django sayfasi</title>
-</head>
-<body>
-<h1>hosgeldin django</h1>
-<h3>sakarya universitesi </h3>
+{%  extends "homebase.html" %}
 
-<p>
-    {{ text  }}
-</p>
-</body>
-</html>
+{% block title %}İndex sayfası
+    {% for setting in settings %}
+        {{ setting.title}}{% endfor %}
+{% endblock %}
+{% block keywords %}İndex sayfası anahtar kelimeler{% endblock %}
+{% block description %}İndex sayfası açıklama{% endblock %}
+
+
+
+
+
+{% block header %}{% include "header.html" %}{% endblock %}
+{% block sidebar %}{% include "sidebar.html" %}{% endblock %}
+{% block content %}{% include "content.html" %}{% endblock %}
+{% block footer %}{% include "footer.html" %}{% endblock %}
