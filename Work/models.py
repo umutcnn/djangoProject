@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import ForeignKey
+from django.utils.safestring import mark_safe
 
 
 class Category(models.Model):
@@ -47,10 +48,24 @@ class work(models.Model):
 
     def __str__(self):
         return self.title
+    def image_tag(self):
+        if self.image:
+            return mark_safe(f'<img src="{self.image.url}" height="50"/>')
+        else:
+            return
+    image_tag.short_description = 'image'
+
 class Images(models.Model):
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=50, blank=True)
     work = models.ForeignKey(work,on_delete=models.CASCADE)
     images = models.ImageField(blank=True, upload_to='images/')
 
     def __str__(self):
         return self.title
+    def image_tag(self):
+        if self.images:
+            return mark_safe(f'<img src="{self.images.url}" height="50"/>')
+        else:
+            return
+    image_tag.short_description = 'images'
+
