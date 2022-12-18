@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.forms import ModelForm
 from django.utils.safestring import mark_safe
-
+from ckeditor_uploader.fields import RichTextUploadingField
 
 # Create your models here.
 class Setting(models.Model):
@@ -25,11 +25,11 @@ class Setting(models.Model):
     icon = models.ImageField(blank=True, upload_to='images/')
     facebook = models.CharField(blank=True, max_length=50)
     instagram = models.CharField(blank=True, max_length=50)
-    twitter = models.CharField(blank=True, max_length=50)
-    aboutus = models.CharField(max_length=50)
-    contact = models.CharField(max_length=50)
+    twitter = models.CharField(blank=True, max_length=55)
+    aboutus = RichTextUploadingField()
+    contact = RichTextUploadingField()
     contact_map = models.CharField(max_length=50)
-    references = models.CharField(max_length=50)
+    references = RichTextUploadingField()
     status = models.CharField(max_length=10, choices=STATUS)
     create_at = models.DateTimeField(auto_now_add=True)
     uptade_at = models.DateTimeField(auto_now=True)
