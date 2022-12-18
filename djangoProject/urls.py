@@ -22,6 +22,7 @@ from home import views
 urlpatterns = [
     path('', include('home.urls')),
     path('hakkimizda/', views.hakkimizda, name='hakkimizda'),
+    path('iletisim/', views.iletisim, name='iletisim'),
     path('home/', include('home.urls')),
     path('Work/', include('Work.urls')),
     path('admin/', admin.site.urls),

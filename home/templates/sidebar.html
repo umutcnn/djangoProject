@@ -9,7 +9,7 @@
                 </a>
                 <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
                     <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
-                        {% for i in category %}
+                        {% for i in Work %}
                         <a href="/category/{{ i.id }}/{{ i.slug }}" class="nav-item nav-link">{{ i.title }}</a>
                         {% endfor %}
                     </div>
@@ -23,9 +23,10 @@
                     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="/" class="nav-item nav-link active">Anasayfa</a>
+                            <a href="/" class="nav-item nav-link ">Anasayfa</a>
                             <a href="/hakkimizda" class="nav-item nav-link">Hakkımızda</a>
                             <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
                             <div class="nav-item dropdown">
@@ -35,7 +36,7 @@
                                     <a href="checkout.html" class="dropdown-item">Checkout</a>
                                 </div>
                             </div>
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                            <a href="/iletisim" class="nav-item nav-link">iletisim</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
                             {% if user.id is not None %}

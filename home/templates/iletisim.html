@@ -1,0 +1,30 @@
+{%  extends "homebase.html" %}
+
+{% block header %}{% include "header.html" %}{% endblock %}
+{% block sidebar %}{% include "sidebar.html" %}{% endblock %}
+{% block content %}
+
+    <div class="container-fluid pt-5">
+
+        <div class="row px-xl-5">
+            <div class="col-lg-7">
+                   <iframe src="{{ setting.contact_map }}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="col-lg-5 mb-5">
+                <h5 class="font-weight-semi-bold mb-3">İletişim bilgilerimiz</h5>
+                <p></p>
+                <div class="d-flex flex-column mb-3">
+
+                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>{{ setting.address }}</p>
+                    <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>{{ setting.email }}</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt text-primary mr-3"></i>{{ setting.phone }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+{% block footer %}{% include "footer.html" %}{% endblock %}

@@ -28,7 +28,7 @@ class Setting(models.Model):
     twitter = models.CharField(blank=True, max_length=55)
     aboutus = RichTextUploadingField()
     contact = RichTextUploadingField()
-    contact_map = models.CharField(max_length=50)
+    contact_map = models.CharField(max_length=500)
     references = RichTextUploadingField()
     status = models.CharField(max_length=10, choices=STATUS)
     create_at = models.DateTimeField(auto_now_add=True)
