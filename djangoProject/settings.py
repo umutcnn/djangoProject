@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -127,4 +129,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 
 
 
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
 
+CKEDITOR_UPLOAD_PATH = "uploads/images/"
+
+CKEDITOR_IMAGE_BACKEND="pillow"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': None,
+    }
+}

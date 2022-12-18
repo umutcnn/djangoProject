@@ -1,14 +1,13 @@
 {%  extends "homebase.html" %}
 
-{% block title %}İndex sayfası
-    {% for setting in settings %}
-        {{ setting.title}}{% endfor %}
-{% endblock %}
-{% block keywords %}İndex sayfası anahtar kelimeler{% endblock %}
-{% block description %}İndex sayfası açıklama{% endblock %}
+{% block title %} {{setting.title}} {% endblock %}
+{% block keywords %}{{  setting.keywords  }}{% endblock %}
+{% block description %}{{  setting.description  }}{% endblock %}
 
 
-
+{% block head %}
+   <link type="image/x-icon" href='{{ setting.icon.url }}' rel="shortcut icon">
+ {% endblock %}
 
 
 {% block header %}{% include "header.html" %}{% endblock %}

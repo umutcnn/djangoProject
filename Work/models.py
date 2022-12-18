@@ -3,7 +3,7 @@ from django.db import models
 from django.db.models import ForeignKey
 from django.utils.safestring import mark_safe
 
-
+from ckeditor_uploader.fields import RichTextUploadingField
 class Category(models.Model):
     STATUS = (
         ('True', 'Evet'),
@@ -39,7 +39,7 @@ class work(models.Model):
     image = models.ImageField(blank=True, upload_to='images/')
     wage = models.FloatField()
     amount = models.IntegerField()
-    detail = models.TextField()
+    detail = RichTextUploadingField()
     status = models.CharField(max_length=10, choices=STATUS)
     slug = models.SlugField(null=False, unique=True)
     parent = ForeignKey('self', blank=True, null=True, related_name='children', on_delete=models.CASCADE)
