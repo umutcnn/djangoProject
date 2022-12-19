@@ -7,10 +7,10 @@
                     <h6 class="m-0">Categories</h6>
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
-                <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
+                <nav class="collapse  navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
                     <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
-                        {% for i in Work %}
-                        <a href="/category/{{ i.id }}/{{ i.slug }}" class="nav-item nav-link">{{ i.title }}</a>
+                        {% for i in categorydata %}
+                        <a href="/category/{{ i.id }}" class="nav-item nav-link">{{ i.title }}</a>
                         {% endfor %}
                     </div>
                 </nav>
@@ -49,11 +49,11 @@
                         </div>
                     </div>
                 </nav>
-
+             {% if page == 'home'%}
             <!-- silder -->
             {% block sidebar %}{% include "silder.html" %}{% endblock %}
 
-
+        {% endif %}
                 </div>
             </div>
         </div>

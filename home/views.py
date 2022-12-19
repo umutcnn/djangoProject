@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from Work.models import work
+from Work.models import work, Category
 from home.models import Setting
 
 
@@ -9,8 +9,10 @@ from home.models import Setting
 def index(request):
     setting = Setting.objects.get(pk = 1)
     sliderdata= work.objects.all()[:4]
-    context = {'setting': setting, 'page': 'home','sliderdata': sliderdata}
+    categorydata = Category.objects.all()
+    context= {'setting': setting, 'page': 'home','sliderdata': sliderdata,'categorydata': categorydata}
     return render(request, 'index.html', context)
+
 
 def hakkimizda(request):
     setting = Setting.objects.get(pk = 1)
