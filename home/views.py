@@ -76,11 +76,13 @@ def work_search(request):
         form = searchs(request.POST)
         if form.is_valid():
             category = Category.objects.all()
+            categorydata = Category.objects.all ()
             query = form.cleaned_data['query']
             works = work.objects.filter(title__icontains=query)
             setting = Setting.objects.get(pk=1)
             context = {'works': works,
                        'category': category,
+                       'categorydata': categorydata,
                        'setting': setting}
             return render(request, 'work_search.html',context)
     return HttpResponse('/')

@@ -44,8 +44,11 @@ class UserProfile(models.Model):
     address = models.CharField(blank=True, max_length=150)
     city = models.CharField(blank=True, max_length=50)
     country = models.CharField(blank=True, max_length=50)
+    job = models.CharField (blank=True, max_length=150)
+    facebook = models.CharField (blank=True, max_length=55)
+    instagram = models.CharField (blank=True, max_length=55)
+    twitter = models.CharField (blank=True, max_length=55)
     image = models.ImageField(blank=True, upload_to='images/userProfile')
-
 
     def __str__(self):
         return self.user.first_name + ' ' + self.user.last_name
