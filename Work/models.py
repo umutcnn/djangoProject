@@ -43,9 +43,13 @@ class work(models.Model):
     detail = RichTextUploadingField()
     status = models.CharField(max_length=10, choices=STATUS)
     slug = models.SlugField(null=False, unique=True)
+    gmail = models.CharField(max_length=200)
     parent = ForeignKey('self', blank=True, null=True, related_name='children', on_delete=models.CASCADE)
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
+    facebook = models.CharField (blank=True, max_length=50)
+    twitter = models.CharField (blank=True, max_length=50)
+    linkedin = models.CharField (blank=True, max_length=55)
 
     def __str__(self):
         return self.title
