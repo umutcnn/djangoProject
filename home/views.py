@@ -66,3 +66,19 @@ def work_detail(request, id, slug):
                'works': works,
                'categorydata': categorydata}
     return render(request, 'work_detail.html', context)
+
+
+def work_search(request):
+    if request.method == 'POST':
+        from home.forms import searchs
+        form = searchs(request.POST)
+        if form.is_valid():
+            category = Category.objects.all()
+            query = form.cleaned_data['query']
+            works = work.objects.filter(title__icontains=query)
+            setting = Setting.objects.get(pk=1)
+            context = {'works': works,
+                       'category': category,
+                       'setting': setting}
+            return render(request, 'work_search.html',context)
+    return HttpResponse('/')

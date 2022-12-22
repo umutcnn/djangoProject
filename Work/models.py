@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import ForeignKey
+from django.forms import ModelForm
 from django.utils.safestring import mark_safe
 
 from ckeditor_uploader.fields import RichTextUploadingField
