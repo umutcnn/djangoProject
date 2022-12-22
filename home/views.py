@@ -8,9 +8,11 @@ from home.models import Setting
 # Create your views here.
 def index(request):
     setting = Setting.objects.get(pk = 1)
-    sliderdata= work.objects.all()[:4]
+    sliderdata= work.objects.all().order_by('-id')[:4]
     categorydata = Category.objects.all()
-    context= {'setting': setting, 'page': 'home','sliderdata': sliderdata,'categorydata': categorydata}
+    randomwork = work.objects.all().order_by('?')[0:4]
+    newWork =work.objects.order_by('-create_at')[0:4]
+    context= {'setting': setting, 'page': 'home','sliderdata': sliderdata,'newWork':newWork,'categorydata': categorydata,'randomwork': randomwork}
     return render(request, 'index.html', context)
 
 
@@ -28,24 +30,15 @@ def iletisim(request):
 
 
 def category_work(request,id):
+    setting = Setting.objects.get(pk=1)
     categorydata = Category.objects.all()
     selectedCategory = Category.objects.filter(pk=id)
     works = work.objects.filter(category_id=id)
-    context = {'selectedCategory': selectedCategory,
+    context = {'setting': setting,
+               'selectedCategory': selectedCategory,
                'works': works,
                'categorydata': categorydata}
     return render(request, 'category_work.html', context)
-
-
-def work_detail(request, id):
-    category = Category.objects.all()
-    selectedwork = work.objects.filter(pk=id)
-    workImages = Images.objects.filter(work_id=id)
-    context = {'category': category,
-               'selectedwork': selectedwork,
-               'workImages': workImages}
-    return render(request, 'work_detail.html', context)
-
 
 
 def ilan(request):
@@ -54,3 +47,22 @@ def ilan(request):
     categorydata = Category.objects.all()
     context= {'setting': setting, 'page': 'ilan','sliderdata': sliderdata,'categorydata': categorydata}
     return render(request, 'ilan.html', context)
+
+
+
+def work_detail(request, id, slug):
+    setting = Setting.objects.get(pk=1)
+    categorydata = Category.objects.all()
+    selectedCategory = Category.objects.filter(pk=id)
+    works = work.objects.filter(category_id=id)
+    category = Category.objects.all()
+    selectedwork = work.objects.filter(pk=id)
+    workImages = Images.objects.filter(work_id=id)
+    context = {'setting': setting,
+               'category': category,
+               'selectedwork': selectedwork,
+               'workImages': workImages,
+               'selectedCategory': selectedCategory,
+               'works': works,
+               'categorydata': categorydata}
+    return render(request, 'work_detail.html', context)

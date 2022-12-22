@@ -19,6 +19,7 @@ class WorkAdmin(admin.ModelAdmin):
 class ImagesAdmin(admin.ModelAdmin):
     list_display = ['title','work','image_tag']
 
+
 # Register your models here.
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(work,WorkAdmin)
