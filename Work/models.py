@@ -47,8 +47,8 @@ class work(models.Model):
     parent = ForeignKey('self', blank=True, null=True, related_name='children', on_delete=models.CASCADE)
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
-    facebook = models.CharField (blank=True, max_length=50)
-    twitter = models.CharField (blank=True, max_length=50)
+    facebook = models.CharField (blank=True, max_length=55)
+    twitter = models.CharField (blank=True, max_length=55)
     linkedin = models.CharField (blank=True, max_length=55)
 
     def __str__(self):

@@ -1,4 +1,5 @@
-from django.http import HttpResponse
+from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 from Work.models import work, Category, Images
@@ -83,3 +84,21 @@ def work_search(request):
                        'setting': setting}
             return render(request, 'work_search.html',context)
     return HttpResponse('/')
+
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return HttpResponseRedirect('/')
+        else:
+            return HttpResponseRedirect('/login')
+    category = Category.objects.all()
+    context = {'category': category, }
+    return render(request, 'login.html', context)
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/')

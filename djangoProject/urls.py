@@ -31,6 +31,9 @@ urlpatterns = [
     path('work/<int:id>/<slug:slug>', views.work_detail, name='work_detail'),
     path('ilan/', views.ilan, name='ilan'),
     path('search/', views.work_search, name='work_search'),
+    path('login/',views.login_view,name='login_view'),
+    path('logout/',views.logout_view,name='logout_view'),
+    path('user/', include('user.urls')),
 
 ]
 if settings.DEBUG:
