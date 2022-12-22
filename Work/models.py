@@ -63,7 +63,7 @@ class work(models.Model):
 class Images(models.Model):
     title = models.CharField(max_length=50, blank=True)
     work = models.ForeignKey(work,on_delete=models.CASCADE)
-    images = models.ImageField(blank=True, upload_to='images/')
+    images = models.ImageField(blank=True, upload_to='image/')
 
     def __str__(self):
         return self.title

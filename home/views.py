@@ -18,6 +18,14 @@ def index(request):
 
 
 
+def sss(request):
+    setting = Setting.objects.get(pk = 1)
+    sliderdata= work.objects.all().order_by('?')[0:4]
+    categorydata = Category.objects.all()
+    context= {'setting': setting,'page': 'sss', 'sliderdata': sliderdata,'categorydata': categorydata}
+    return render(request, 'sss.html', context)
+
+
 def hakkimizda(request):
     setting = Setting.objects.get(pk = 1)
     categorydata = Category.objects.all()
