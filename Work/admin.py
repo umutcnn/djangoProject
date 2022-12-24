@@ -1,7 +1,6 @@
 from django.contrib import admin
 
 from Work.models import Category, work, Images
-
 class WorkImageInline(admin.TabularInline):
     model = Images
     extra = 3
@@ -18,6 +17,7 @@ class WorkAdmin(admin.ModelAdmin):
 
 class ImagesAdmin(admin.ModelAdmin):
     list_display = ['title','work','image_tag']
+
 
 
 # Register your models here.

@@ -9,7 +9,7 @@ from home.models import Setting
 # Create your views here.
 def index(request):
     setting = Setting.objects.get(pk = 1)
-    sliderdata= work.objects.all().order_by('?')[0:4]
+    sliderdata= work.objects.all().order_by('?')[0:6]
     categorydata = Category.objects.all()
     randomwork = work.objects.all().order_by('?')[0:4]
     newWork = work.objects.order_by('-create_at')[0:4]

@@ -73,4 +73,16 @@ class Images(models.Model):
         else:
             return
     image_tag.short_description = 'images'
+class BasvuruYap(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    work = models.ForeignKey(work,on_delete=models.CASCADE)
+    email = models.CharField(blank=True, max_length=15)
+    address = models.CharField(blank=True, max_length=150)
+    city = models.CharField(blank=True, max_length=50)
+    country = models.CharField(blank=True, max_length=50)
+    job = models.CharField (blank=True, max_length=150)
+    firmaHakkindaDusunduklerin = models.CharField (blank=True, max_length=150)
+    deneyim = models.CharField (blank=True, max_length=55)
+    referans = models.CharField (blank=True, max_length=55)
+    cv = models.FileField(blank=True, upload_to='images/')
 
