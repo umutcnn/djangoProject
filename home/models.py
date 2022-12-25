@@ -3,7 +3,6 @@ from django.db import models
 from django.forms import ModelForm
 from django.utils.safestring import mark_safe
 from ckeditor_uploader.fields import RichTextUploadingField
-
 # Create your models here.
 class Setting(models.Model):
     STATUS = (
@@ -62,6 +61,3 @@ class UserProfileForm(ModelForm):
     class Meta:
         model = UserProfile
         fields = ['phone', 'address', 'city', 'country', 'image']
-
-
-

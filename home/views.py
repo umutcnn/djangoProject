@@ -1,18 +1,19 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
-from Work.models import work, Category, Images
-from home.models import Setting
+from Work.models import Work, Category, Images
+from home.models import Setting, UserProfile
 
 
 # Create your views here.
 def index(request):
     setting = Setting.objects.get(pk = 1)
-    sliderdata= work.objects.all().order_by('?')[0:6]
+    sliderdata= Work.objects.all().order_by('?')[0:6]
     categorydata = Category.objects.all()
-    randomwork = work.objects.all().order_by('?')[0:4]
-    newWork = work.objects.order_by('-create_at')[0:4]
+    randomwork = Work.objects.all().order_by('?')[0:4]
+    newWork = Work.objects.order_by('-create_at')[0:4]
     context= {'setting': setting, 'page': 'home','sliderdata': sliderdata,'newWork':newWork,'categorydata': categorydata,'randomwork': randomwork}
     return render(request, 'index.html', context)
 
@@ -20,7 +21,7 @@ def index(request):
 
 def sss(request):
     setting = Setting.objects.get(pk = 1)
-    sliderdata= work.objects.all().order_by('?')[0:4]
+    sliderdata= Work.objects.all().order_by('?')[0:4]
     categorydata = Category.objects.all()
     context= {'setting': setting,'page': 'sss', 'sliderdata': sliderdata,'categorydata': categorydata}
     return render(request, 'sss.html', context)
@@ -43,7 +44,7 @@ def category_work(request,id):
     setting = Setting.objects.get(pk=1)
     categorydata = Category.objects.all()
     selectedCategory = Category.objects.filter(pk=id)
-    works = work.objects.filter(category_id=id)
+    works = Work.objects.filter(category_id=id)
     context = {'setting': setting,
                'selectedCategory': selectedCategory,
                'works': works,
@@ -53,7 +54,7 @@ def category_work(request,id):
 
 def ilan(request):
     setting = Setting.objects.get(pk = 1)
-    sliderdata= work.objects.all()[:]
+    sliderdata= Work.objects.all()[:]
     categorydata = Category.objects.all()
     context= {'setting': setting, 'page': 'ilan','sliderdata': sliderdata,'categorydata': categorydata}
     return render(request, 'ilan.html', context)
@@ -64,9 +65,9 @@ def work_detail(request, id, slug):
     setting = Setting.objects.get(pk=1)
     categorydata = Category.objects.all()
     selectedCategory = Category.objects.filter(pk=id)
-    works = work.objects.filter(category_id=id)
+    works = Work.objects.filter(category_id=id)
     category = Category.objects.all()
-    selectedwork = work.objects.filter(pk=id)
+    selectedwork = Work.objects.filter(pk=id)
     workImages = Images.objects.filter(work_id=id)
     context = {'setting': setting,
                'category': category,
@@ -86,7 +87,7 @@ def work_search(request):
             category = Category.objects.all()
             categorydata = Category.objects.all ()
             query = form.cleaned_data['query']
-            works = work.objects.filter(title__icontains=query)
+            works = Work.objects.filter(title__icontains=query)
             setting = Setting.objects.get(pk=1)
             context = {'works': works,
                        'category': category,
@@ -112,3 +113,5 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/')
+
+

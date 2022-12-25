@@ -1,9 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import ForeignKey
-from django.forms import ModelForm
 from django.utils.safestring import mark_safe
-
+from django.forms import ModelForm
 from ckeditor_uploader.fields import RichTextUploadingField
 class Category(models.Model):
     STATUS = (
@@ -28,7 +27,7 @@ class Category(models.Model):
 '''
 
 
-class work(models.Model):
+class Work(models.Model):
     STATUS = (
         ('True', 'Evet'),
         ('False', 'Hayır'),
@@ -62,7 +61,7 @@ class work(models.Model):
 
 class Images(models.Model):
     title = models.CharField(max_length=50, blank=True)
-    work = models.ForeignKey(work,on_delete=models.CASCADE)
+    work = models.ForeignKey(Work,on_delete=models.CASCADE)
     images = models.ImageField(blank=True, upload_to='image/')
 
     def __str__(self):
@@ -73,16 +72,32 @@ class Images(models.Model):
         else:
             return
     image_tag.short_description = 'images'
-class BasvuruYap(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    work = models.ForeignKey(work,on_delete=models.CASCADE)
-    email = models.CharField(blank=True, max_length=15)
-    address = models.CharField(blank=True, max_length=150)
-    city = models.CharField(blank=True, max_length=50)
-    country = models.CharField(blank=True, max_length=50)
-    job = models.CharField (blank=True, max_length=150)
+
+class Basvuru(models.Model):
+    STATUS = (
+        ('New', 'Yeni'),
+        ('True', 'Evet'),
+        ('False', 'Hayır')
+    )
+    work = models.ForeignKey(Work, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    status = models.CharField(max_length=10, choices=STATUS, blank=True)
+    #ip = models.CharField(max_length=20, blank=True)
+    referans = models.TextField(max_length=200)
+    #cv = models.FileField(blank=True, upload_to='images/')
     firmaHakkindaDusunduklerin = models.CharField (blank=True, max_length=150)
-    deneyim = models.CharField (blank=True, max_length=55)
-    referans = models.CharField (blank=True, max_length=55)
-    cv = models.FileField(blank=True, upload_to='images/')
+    create_at = models.DateTimeField(auto_now_add=True)
+    uptade_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.referans
+
+class BasvuruForm(ModelForm):
+    class Meta:
+        model = Basvuru
+        fields = ['referans','work','status']
+
+
+
+
 

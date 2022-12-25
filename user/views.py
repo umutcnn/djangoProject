@@ -1,4 +1,4 @@
-from Work.models import Category, work, Images
+from Work.models import Category, Work, Images
 
 from home.models import Setting, UserProfile
 
@@ -7,7 +7,6 @@ from django.shortcuts import render
 
 def index(request):
     if request.user.id is not None:
-        category = Category.objects.all()
         user = UserProfile.objects.get(user_id=request.user.id)
         settings = Setting.objects.filter(pk=0)
         categorydata = Category.objects.all ()
