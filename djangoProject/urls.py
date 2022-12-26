@@ -24,7 +24,7 @@ urlpatterns = [
     path('hakkimizda/', views.hakkimizda, name='hakkimizda'),
     path('iletisim/', views.iletisim, name='iletisim'),
     path('home/', include('home.urls')),
-    path('Work/', include('Work.urls')),
+    path('work/', include('Work.urls')),
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('category/<int:id>', views.category_work, name='category_work'),
@@ -35,6 +35,8 @@ urlpatterns = [
     path('logout/',views.logout_view,name='logout_view'),
     path('user/', include('user.urls')),
     path('sss/', views.sss, name='sss'),
+
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,document_root= settings.MEDIA_ROOT)

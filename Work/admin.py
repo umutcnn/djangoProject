@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from Work.models import Category, Work, Images,Basvuru
+from Work.models import Category, Work, Images,Basvuru,Comment
 class WorkImageInline(admin.TabularInline):
     model = Images
     extra = 3
@@ -20,9 +20,13 @@ class BasvuruAdmin(admin.ModelAdmin):
     list_display = ['work','referans','status']
     list_filter = ['status','referans']
 
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['product','subject','comment']
+    list_filter = ['status','subject']
 
 # Register your models here.
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(Work,WorkAdmin)
 admin.site.register(Images,ImagesAdmin)
-admin.site.register(Basvuru,BasvuruAdmin)
+#admin.site.register(Basvuru,BasvuruAdmin)
+admin.site.register(Comment, CommentAdmin)

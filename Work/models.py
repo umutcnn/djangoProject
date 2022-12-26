@@ -82,9 +82,9 @@ class Basvuru(models.Model):
     work = models.ForeignKey(Work, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
     status = models.CharField(max_length=10, choices=STATUS, blank=True)
-    #ip = models.CharField(max_length=20, blank=True)
+    ip = models.CharField(max_length=20, blank=True)
     referans = models.TextField(max_length=200)
-    #cv = models.FileField(blank=True, upload_to='images/')
+    cv = models.FileField(blank=True, upload_to='images/')
     firmaHakkindaDusunduklerin = models.CharField (blank=True, max_length=150)
     create_at = models.DateTimeField(auto_now_add=True)
     uptade_at = models.DateTimeField(auto_now=True)
@@ -96,6 +96,32 @@ class BasvuruForm(ModelForm):
     class Meta:
         model = Basvuru
         fields = ['referans','work','status']
+
+
+class Comment(models.Model):
+    STATUS = (
+        ('New', 'Yeni'),
+        ('True', 'Evet'),
+        ('False', 'Hayır')
+    )
+    product = models.ForeignKey(Work, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    subject = models.CharField(max_length=50)
+    comment = models.FileField(max_length=200)
+    status = models.CharField(max_length=10, choices=STATUS, blank=True)
+    ip = models.CharField(max_length=20, blank=True)
+    create_at = models.DateTimeField(auto_now_add=True)
+    uptade_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.subject
+
+class CommentForm(ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['subject', 'comment']
+
+
 
 
 
