@@ -1,0 +1,57 @@
+{%  extends "homebase.html" %}
+
+{% block title %} {{ setting.title }}{% endblock %}
+
+
+{% block content %}
+
+
+<section class="vh-100" style="background-color: #508bfc;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+
+            <h3 class="mb-5">Kullanıcı Kayıt Ekranı</h3>
+
+              {% if messages %}
+                {% for message in messages %}
+                  <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+
+              {% endfor %}
+              {% endif %}
+
+             <form method="POST">
+            <div class="form-outline mb-4">
+              {% csrf_token %}
+                {% for field in form %}
+
+                <p>
+                    {{ field.label_tag }}<br>
+                    {{ field }}
+                    {% if field.hepl_text %}
+                    <small style="color: gray">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <p style="color: red">{{ error }}</p>
+
+                    {% endfor %}
+
+                </p>
+{% endfor %}
+
+                </div>
+            <button class="btn btn-primary btn-block border-0 py-3" type="submit" value="Login">Kayıt Ol</button>
+             </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}
