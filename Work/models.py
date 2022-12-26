@@ -107,7 +107,7 @@ class Comment(models.Model):
     product = models.ForeignKey(Work, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
     subject = models.CharField(max_length=50)
-    comment = models.FileField(max_length=200)
+    comment = models.TextField(max_length=200)
     status = models.CharField(max_length=10, choices=STATUS, blank=True)
     ip = models.CharField(max_length=20, blank=True)
     create_at = models.DateTimeField(auto_now_add=True)
@@ -120,10 +120,3 @@ class CommentForm(ModelForm):
     class Meta:
         model = Comment
         fields = ['subject', 'comment']
-
-
-
-
-
-
-

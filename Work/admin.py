@@ -16,17 +16,14 @@ class WorkAdmin(admin.ModelAdmin):
 
 class ImagesAdmin(admin.ModelAdmin):
     list_display = ['title','work','image_tag']
-class BasvuruAdmin(admin.ModelAdmin):
-    list_display = ['work','referans','status']
-    list_filter = ['status','referans']
+
 
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ['product','subject','comment']
+    list_display = ['user','product','subject','comment','status']
     list_filter = ['status','subject']
 
 # Register your models here.
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(Work,WorkAdmin)
 admin.site.register(Images,ImagesAdmin)
-#admin.site.register(Basvuru,BasvuruAdmin)
-admin.site.register(Comment, CommentAdmin)
+admin.site.register(Comment,CommentAdmin)
