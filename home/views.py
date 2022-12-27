@@ -7,14 +7,14 @@ from django.shortcuts import render
 
 from Work.models import Work, Category, Images, BasvuruForm, Basvuru
 from home.forms import SignUpForm
-from home.models import Setting, UserProfile
+from home.models import Setting
 from django.contrib import messages
 
 
 # Create your views here.
 def index(request):
     setting = Setting.objects.get(pk = 1)
-    sliderdata= Work.objects.all().order_by('?')[0:6]
+    sliderdata= Work.objects.all().order_by('?')[0:7]
     categorydata = Category.objects.all()
     randomwork = Work.objects.all().order_by('?')[0:4]
     newWork = Work.objects.order_by('-create_at')[0:4]
